@@ -1,9 +1,14 @@
-Waspsaliva
-=========
+waspsaliva
+==========
 
 This is a hacked client forked from [Dragonfireclient](https://github.com/EliasFleckenstein03/dragonfireclient), itself a fork of Minetest. Build instructions are the same as regular Minetest.
 
+Credits
+=======
 
+cora:- Main Developer of waspsaliva
+Fleckenstein:- Main Developer of dragonfire
+The Minetest Team:- Minetest
 
 Minetest
 ========
