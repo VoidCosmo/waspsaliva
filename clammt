@@ -1,0 +1,7 @@
+#!/bin/sh
+pwf=$HOME/.mtpw
+if [ -z $1 ]; then echo "usage: clammt altname - (common) password must be in $pwf"; exit 1; fi
+mt=$(dirname $0)/automt
+pw=$(cat $pwf)
+$mt clam-ity.minecity.online $1 $pw
+
