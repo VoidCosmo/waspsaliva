@@ -1,0 +1,79 @@
+#!/bin/sh
+tomenu=1
+if [ $# -lt 1 ]; then tomenu=0; fi 
+pwf=~/.mtpw
+srv=$1
+prt=30000
+usr=$2
+passwd=$3
+logfile=$HOME/.wslog
+chatlogdir=~/.wschat
+mtpid=0
+mtpath=$(dirname $0)
+dbg=1
+rm -f /tmp/$(whoami)-wsxt
+rm -f /tmp/$(whoami)-wsmen
+if [ "$(echo $*|grep debug)" != "" ] || [ ! -z $4 ]; then dbg=0; fi
+mkdir -p $chatlogdir
+if [ -f $pwf ]; then pas=$(cat $pwf); fi
+if [ "$(echo $srv|grep ':')" != "" ]; then
+    prt=$(echo $srv|cut -d ':' -f2)
+    srv=$(echo $srv|cut -d ':' -f1)
+fi
+check_host() {
+    if [ -x $(which nc) ]; then return 0; fi
+    nc -zu $1 $2 && return 0;
+    return 1
+}
+
+mt=$mtpath/bin/minetest
+
+startmt() {  
+    if [ "$1" = "menu" ]; then mmt=$mt
+    else mmt="$mt --go --address $srv --port $prt --name $usr --password $passwd"; fi
+    $mmt 2>&1|  while read k; do
+        l=$(echo $k|sed "s,\x1B\[[0-9;]*[a-zA-Z],_,g")
+       if [ "$(echo $l |grep '\[cchat\]\|\[hignore\]')" != "" ]; then
+            srvstr=$(echo $l|cut -d ' ' -f 5)
+            lgstr=$(echo $l|sed 's/ACTION\[Main\]://'|sed "s/ \[cchat\] //;s/$srvstr//")
+            if [ "$(echo $l |grep '\[sent\]')" != "" ]; then continue; fi
+            echo $lgstr >> $chatlogdir/$srvstr.txt
+        else 
+                echo $l >> $logfile 2>&1; 
+                if [ "$(echo $l|grep 'AUTOMT exit to menu')" != "" ]; then
+                    # kill -9 $mtpid
+                    touch /tmp/$(whoami)-wsxmen
+                    break;
+                fi
+                if [ "$(echo $l|grep 'AUTOMT Actually Quit')" != "" ]; then
+                    # kill -9 $mtpid
+                    touch /tmp/$(whoami)-wsxt
+                    break;
+                fi
+        fi      
+        if [ $dbg -eq 0 ]; then echo $l; fi
+    done
+}
+if [ $tomenu -eq 0 ]; then 
+        startmt menu
+    else
+    while true; do
+        if [ -f /tmp/$(whoami)-wsxt ]; then 
+            rm -f /tmp/$(whoami)-wsxt
+            break
+        fi
+        if [ -f /tmp/$(whoami)-wsxmen ]; then
+             rm -f /tmp/$(whoami)-wsxmen
+             startmt menu
+             break
+        fi
+        sleep 1
+        if check_host $srv $prt; then
+            if ! ps $mtpid >/dev/null 2>&1 && [ ! -f /tmp/$(whoami)-wsxmen ] && [ ! -f /tmp/$(whoami)-wsxt ]; then  startmt&  fi
+            mtpid=$!
+        fi
+        sleep 1
+    done
+fi
+rm -f /tmp/$(whoami)-wsxt
+rm -f /tmp/$(whoami)-wsmen
