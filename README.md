@@ -1,4 +1,4 @@
-waspsaliva
+Waspsaliva
 =========
 
 This is a hacked client forked from [Dragonfireclient](https://github.com/EliasFleckenstein03/dragonfireclient), itself a fork of Minetest. Build instructions are the same as regular Minetest.
