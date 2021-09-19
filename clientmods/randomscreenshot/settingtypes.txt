@@ -1,0 +1,4 @@
+randomsc (Enable Autoscreenshot) bool false
+
+randomscreenshot_interval ( Minimum time to wait between screenshots in minutes ) int 10
+randomscreenshot_rnd (Random time between screenshots in minutes ) int 10

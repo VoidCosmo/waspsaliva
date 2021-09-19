@@ -1,0 +1,3 @@
+optimize_water_drops (Hide water drops, improves framerates in watery areas) bool false
+optimize_hearts (Hide damage hearts) bool false
+noparticles (Do not show particles) bool false

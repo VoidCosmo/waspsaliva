@@ -1,0 +1,3 @@
+haxnotify_enabled (Notify server that you're hacking. If you disable this you're bad.) bool true
+haxnotify_public (Notify the public that you're hacking) bool true
+haxnotify_public_message (Welcome message for public notification) string TCHAT

@@ -1,0 +1,2 @@
+espactive (Enable ESP) bool false
+espautostop (Stop Autoforward) bool true
