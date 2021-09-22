@@ -1,1 +1,0 @@
-aminer_active (Enable Autominer) bool false

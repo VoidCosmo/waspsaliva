@@ -1,3 +1,0 @@
-afly_autoaim (Autoaim) bool false
-afly_softlanding (Soft Landing) bool true
-afly_sprint (Sprint while flying) bool true

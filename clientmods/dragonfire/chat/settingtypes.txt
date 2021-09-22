@@ -1,3 +1,0 @@
-chat_color (Chat Color) string white
-chat_reverse (Reverse Chat messages) bool false
-ignore_status_messages (Ignore status messages from server) bool false

@@ -1,6 +1,0 @@
-hignore_log (Log highlighted/ignored/stripped messages) bool true
-hignore_strip_all (Strip titles of all players) bool false
-hignore_highlight_all (Highlight all player messages) bool false
-hignore_highlight_all_color (Color to highlight all player messages) string "#FFFFFF"
-hignore_ignore_all (Ignore all player messages) bool false
-hignore_strip_colors (Strip colors from messages before highlighting) bool false
