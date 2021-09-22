@@ -1,0 +1,18 @@
+tchat_view_chat (Show team chat) bool false
+tchat_view_team_list (Show team list) bool true
+tchat_view_player_list (Show player list) bool true
+tchat_team_mode (Team mode) bool false
+
+tchat_colorize_team (Show colorized team list) bool false
+tchat_use_wisp (Use Wisp to encrypt outgoing messages) bool false
+
+tchat_prefix_message (Message Prefix) string TCHAT
+tchat_prefix_receive (Received PM starting string) string From 
+tchat_prefix_self (Received PM starting string to yourself) string To Yourself 
+tchat_prefix_send (Outgoing PM starting string) string To 
+
+tchat_blacklist (Names that can't use team chat) string 
+tchat_hide_sent (Hide "Message sent." server messages) bool true
+
+tchat_chat_length (Maximum team chat messages) int 6
+tchat_chat_width (Team chat width in columns) int 80

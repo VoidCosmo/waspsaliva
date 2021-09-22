@@ -1,0 +1,7 @@
+wisp_prefix (Prefix for encrypted messages) string &**&
+wisp_curve (Curve for ECDH) string prime256v1
+wisp_cipher (Cipher for messages) string aes256
+wisp_digest (Digest for shared secrets) string sha256
+wisp_iv_size (Size in bytes for initialization vector nonce) int 8
+wisp_whisper (Whisper command) string msg
+wisp_hide_sent (Hide "Message sent." server messages) bool true
